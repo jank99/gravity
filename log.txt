@@ -1,4 +1,4 @@
-Logbuch
+﻿Logbuch
 
 bab barbara honeder
 jan jan koegl
@@ -34,10 +34,16 @@ ph: Erzeugung der Planeten (4)
 ph: Geometrie Bibliothek (4)
 
 27.5:
+jan: Stoppuhr (3)
+
+27.5:
 ph: Rotation der Planeten, Dokumentation (4)
 
 28.5:
 ph: Utility Bibliothek (1)
+
+28.5:
+jan: Stoppuhr (2)
 
 29.5:
 bab, jan, ph: Spieldesign, Steuerung (2)
@@ -66,6 +72,9 @@ ph: Berechnung der Flugbahn, Dokumentation, Clean-up (4)
 
 10.6:
 ph: Berechnung des Landepunktes (2)
+
+12.6:
+jan: Einstellungen einlesen/auslesen, Labels mit zusätzlicher Info (5)
 
 
 

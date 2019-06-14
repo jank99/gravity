@@ -134,6 +134,7 @@ class Ship:
                 launches=self.nLaunches,
                 lost=self.nLost,
                 mov=str(self.paths[-1]))
+    
         
  
 
