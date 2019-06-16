@@ -4,7 +4,7 @@ import time
 import tkinter as tk
 from util import log
 from config import Config
-from game import Game, Ship
+from game import Game
 from geometry import Point, Circle, Rect
 
 
@@ -229,47 +229,28 @@ class Clock(Container):
         self.label.config(text=self.fmtString.format(cd, ch, cm, t % 60))
         
 
-'''class Labels(Container,Ship):
+class Labels(Container):
     def __init__(self,parent):
         Container.__init__(self,parent)
-        self.usedFuelLabel = tk.Label(self.frame,
-                                      width=30,
-                                      text='Used fuel: ')
         self.nLaunchesLabel = tk.Label(self.frame,
-                                       width=30,
-                                       text='launches')
+                                       width=20,
+                                       text='0 launches',
+                                       bg=Config.colors['labelBackground'].tkString())
         self.nLostLabel = tk.Label(self.frame,
-                                   width=30,
-                                   text='times lost in universe')
-        self.pathsLabel = tk.Label(self.frame,
-                                   width=30,
-                                   text='meters')
+                                   width=20,
+                                   text='0 times lost in universe',
+                                   bg=Config.colors['labelBackground'].tkString())
+        
         
     def layout(self):
-        self.usedFuelLabel.grid(row=0,column=0)
-        self.nLaunchesLabel.grid(row=1,column=1)
-        self.nLostLabel.grid(row=2,column=1)
-        self.pathsLabel.grid(row=3,column=1)
+        self.nLaunchesLabel.grid(row=0,column=1)
+        self.nLostLabel.grid(row=1,column=1)
     
-    def update(self):
-        self.usedFuelLabel.config(text='Used fuel: '+str(self.usedFuel))
-        self.nLaunchesLabel.config(text=str(self.nLaunches)+' launches')
-        self.nLostLabel.config(text=str(self.nLost)+' times lost in universe')
-        self.pathsLabel.config(text=str(self.paths)+' meters')'''
-                
+    def update(self,textLa,textLo):
+        self.nLaunchesLabel.config(text=str(textLa)+' launches')
+        self.nLostLabel.config(text=str(textLo)+' times lost in universe')
         
-class Labels(Container,Ship):
-    def __init__(self,parent):
-        Container.__init__(self,parent)
-        self.label = tk.Label(self.frame,
-                              width=100)
-        
-    def layout(self):
-        self.label.grid()
-    
-    def update(self):
-        self.label.config(text=self.__str__())
-        
+
 
 class Controls(Container):
     """Game controls
@@ -599,7 +580,8 @@ class App(Container):
 
             gt = self.gameTime(t)
             self.updateClock(gt)
-            self.updateLabels()
+            if self.game.ship is not None:
+                self.updateLabels(self.game.ship.nLaunches,self.game.ship.nLost)
 
         self.lastTotalLag = self.totalLag
         self.lastUpdateSlow = t
@@ -620,17 +602,22 @@ class App(Container):
 
     def run(self):
         self.frame.mainloop()
-
-    def quit(self):
-        self.frame.quit()
+        
+    def settingsList(self):
+        l=''
+        for k, var in self.settingVariables.items():
+            l+=str(self.settings.get(k))+'\n'
+        return l
         
     def saveSettings(self):
         file=open('settings.txt','w')
-        file.write(str(self.settingVariables))
+        file.write(self.settingsList())
+
+    def quit(self):
+        self.frame.quit()
+        self.saveSettings()
+        
     
-    def getSettings(self):
-        file=open('settings.txt','r')
-        return file.read()
     
 
 

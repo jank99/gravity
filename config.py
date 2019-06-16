@@ -34,6 +34,7 @@ class Config:
             
             'launchButton': Color(192, 32, 32),
             'clockBackground': Color(230, 230, 230),
+            'labelBackground': Color(250,250,250),
             
             'startPlanet': Color(16, 200, 200),
             'targetPlanet': Color(16, 220, 48),
@@ -158,20 +159,35 @@ class Settings:
 # For all of these, we will create two attributes:
 #   1) Settings.{name}  will be set to the third value
 #   2) Settings.{name}Range will be set to an interval [first, second] value.
+
+def getSettings(j):
+        file=open('settings.txt','r')
+        r=file.readlines()
+        for i in range(len(r)):
+            r2=r[i].strip()
+            if i<5:
+                r[i]=float(r2)
+            else:
+                r[i]=int(r2)
+        return r[j]
+
 settingVars = {
         # Scaling values
-        's_planetSize': (-5, 5, 0),
-        's_planetDensity': (-5, 5, 0),
-        's_planetRotation': (-15, 15, 0),
-        's_gravityConstant': (-5, 5, 0),
+        's_planetSize': (-5, 5, getSettings(0)),
+        's_planetDensity': (-5, 5, getSettings(1)),
+        's_planetRotation': (-15, 15, getSettings(2)),
+        's_gravityConstant': (-5, 5, getSettings(3)),
         's_animationSpeed': (-5, 5, 0),
         
         # Absolute values
-        'planetSpread': (1, 4, 2),
-        'nSmallPlanets': (0, 10, 5),
-        'nNormalPlanets': (0, 8, 3),
-        'nLargePlanets': (0, 6, 2)
+        'planetSpread': (1, 4, getSettings(4)),
+        'nSmallPlanets': (0, 10, getSettings(5)),
+        'nNormalPlanets': (0, 8, getSettings(6)),
+        'nLargePlanets': (0, 6, getSettings(7))
 }
+
+
+
 
 for name, defn in settingVars.items():
     setattr(Settings, name, defn[2])

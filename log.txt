@@ -76,6 +76,12 @@ ph: Berechnung des Landepunktes (2)
 12.6:
 jan: Einstellungen einlesen/auslesen, Labels mit zusätzlicher Info (5)
 
+15.06:
+jan: Labels mit zusätzlicher Info (3)
+
+16.06:
+jan: Einstellungen einlesen/auslesen (5)
+
 
 
 
