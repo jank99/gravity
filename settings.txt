@@ -1,8 +1,1 @@
-0.6
-0.9
-5.1
-1.0
-2.6
-5
-5
-3
+{'s_planetSize': -5.0, 's_planetDensity': 5.0, 's_planetRotation': -15.0, 's_gravityConstant': 5.0, 'planetSpread': 4.0, 'nSmallPlanets': 10, 'nNormalPlanets': 0, 'nLargePlanets': 0}

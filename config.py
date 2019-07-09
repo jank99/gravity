@@ -160,30 +160,28 @@ class Settings:
 #   1) Settings.{name}  will be set to the third value
 #   2) Settings.{name}Range will be set to an interval [first, second] value.
 
-def getSettings(j):
-        file=open('settings.txt','r')
-        r=file.readlines()
-        for i in range(len(r)):
-            r2=r[i].strip()
-            if i<5:
-                r[i]=float(r2)
-            else:
-                r[i]=int(r2)
-        return r[j]
+def getSettings():
+        file = open('settings.txt','r')
+        text = file.read()
+        d = eval(text)
+        return d
+
+sd = getSettings()
+        
 
 settingVars = {
         # Scaling values
-        's_planetSize': (-5, 5, getSettings(0)),
-        's_planetDensity': (-5, 5, getSettings(1)),
-        's_planetRotation': (-15, 15, getSettings(2)),
-        's_gravityConstant': (-5, 5, getSettings(3)),
+        's_planetSize': (-5, 5, sd['s_planetSize']), 
+        's_planetDensity': (-5, 5, sd['s_planetDensity']),
+        's_planetRotation': (-15, 15, sd['s_planetRotation']),
+        's_gravityConstant': (-5, 5, sd['s_gravityConstant']),
         's_animationSpeed': (-5, 5, 0),
         
         # Absolute values
-        'planetSpread': (1, 4, getSettings(4)),
-        'nSmallPlanets': (0, 10, getSettings(5)),
-        'nNormalPlanets': (0, 8, getSettings(6)),
-        'nLargePlanets': (0, 6, getSettings(7))
+        'planetSpread': (1, 4, sd['planetSpread']),
+        'nSmallPlanets': (0, 10, sd['nSmallPlanets']),
+        'nNormalPlanets': (0, 8, sd['nNormalPlanets']),
+        'nLargePlanets': (0, 6, sd['nLargePlanets'])
 }
 
 

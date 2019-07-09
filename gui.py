@@ -603,15 +603,16 @@ class App(Container):
     def run(self):
         self.frame.mainloop()
         
-    def settingsList(self):
-        l=''
-        for k, var in self.settingVariables.items():
-            l+=str(self.settings.get(k))+'\n'
+    def settingsDict(self):
+        l={}
+        for k,var in self.settingVariables.items():
+            l[k] = self.settings.get(k)
         return l
         
     def saveSettings(self):
         file=open('settings.txt','w')
-        file.write(self.settingsList())
+        file.write(str(self.settingsDict()))
+        file.close()
 
     def quit(self):
         self.frame.quit()
